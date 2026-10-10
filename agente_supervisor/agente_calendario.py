@@ -9,24 +9,17 @@ class AgenteCalendario:
             tools=[self.revisar_disponibilidad],
             system_prompt=(
                 "Eres un agente especialista en calendario, agendar eventos y disponibilidad de fechas y horarios"
-                "Solo debes responder preguntas relacionadas con el clima"
-                "Si necesiatas conocer el clima de una ciudad, usa la herramienta revisar_disponibilidad"
+                "Si necesitas conocer disponibilidad, usa la herramienta revisar_disponibilidad"
                 "Respone en español de manera bereve y concisa"
             ),
         )
 
     @tool
-    def revisar_disponibilidad(ciudad: str):
-        """Obtiene el clima actual de una ciudad"""
-        print(f"herramienta obtener_clima revisando: {ciudad}")
+    def revisar_disponibilidad(dia: str):
+        """Revisa la disponibilidad de calendario para una fecha o dia"""
+        print(f"herramienta revisar_disponibilidad revisando: {dia}")
 
-        data = {
-            "monterrey": "31 C, seco, con probabilidad de lluvia",
-            "guadalajara": "24 C, parcialmente nublado, viento ligero",
-            "ciudad de mexico": "21 C, nublado, baja probabilidad de lluvia",
-        }
-
-        return data.get(ciudad.lower(), f"No tengo informacion del clima para {ciudad}")
+        return "Se cuenta con disponibilidad de 11:00am a 12:00pm"
 
     def procesar(self, input):
         res = self.agent.invoke(
